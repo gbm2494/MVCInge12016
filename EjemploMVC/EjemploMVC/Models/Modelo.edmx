@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ModeloEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="nombre" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido1" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="apellido2" Type="varchar" MaxLength="20" />
+          <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="carne" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="sexo" Type="bit" Nullable="false" />
+          <Property Name="fechaNac" Type="date" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="40" />
+        </EntityType>
+        <EntityType Name="telefono">
+          <Key>
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="telefono" />
+          </Key>
+          <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__telefono__cedula__35BCFE0A">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="telefono">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModeloEntitiesStoreContainer">
+          <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="telefono" EntityType="Self.telefono" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="telefono" EntitySet="telefono" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ModeloEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="persona">
+          <Key>
+            <PropertyRef Name="cedula" />
+          </Key>
+          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="carne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="sexo" Type="Boolean" Nullable="false" />
+          <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="telefono" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="persona" ToRole="telefono" />
+        </EntityType>
+        <EntityType Name="telefono">
+          <Key>
+            <PropertyRef Name="cedula" />
+            <PropertyRef Name="telefono1" />
+          </Key>
+          <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="persona" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="telefono" ToRole="persona" />
+        </EntityType>
+        <Association Name="FK__telefono__cedula__35BCFE0A">
+          <End Role="persona" Type="Self.persona" Multiplicity="1" />
+          <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="persona">
+              <PropertyRef Name="cedula" />
+            </Principal>
+            <Dependent Role="telefono">
+              <PropertyRef Name="cedula" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="persona" EntityType="Self.persona" />
+          <EntitySet Name="telefono" EntityType="Self.telefono" />
+          <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="telefono" EntitySet="telefono" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModeloEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="persona">
+            <EntityTypeMapping TypeName="ModeloEntities.persona">
+              <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="carne" ColumnName="carne" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="telefono">
+            <EntityTypeMapping TypeName="ModeloEntities.telefono">
+              <MappingFragment StoreEntitySet="telefono">
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="telefono1" ColumnName="telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

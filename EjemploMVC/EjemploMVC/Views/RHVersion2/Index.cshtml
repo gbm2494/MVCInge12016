@@ -1,0 +1,59 @@
+﻿@model EjemploMVC.Models.ModeloIntermedio
+
+@{
+    ViewBag.Title = "Lista de números ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido 1
+        </th>
+        <th>
+            Telefonos
+        </th>
+
+    </tr>
+
+    @for(int i = 0; i < Model.listaPersonas.Count; i++)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.listaPersonas.ElementAt(i).nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.listaPersonas.ElementAt(i).apellido1)
+            </td>
+            <td>
+                @for (int j = 0; j < Model.listaNumeros.Count; j++)
+                {
+                    if (Model.listaPersonas.ElementAt(i).cedula.Equals(Model.listaNumeros.ElementAt(j).cedula))
+                    {
+
+                        @Html.DisplayFor(modelItem => Model.listaNumeros.ElementAt(j).telefono1) 
+                        @Html.Raw(" ")
+                    }
+                }
+            </td>
+            <td>
+                
+            </td>
+            
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = Model.listaPersonas.ElementAt(i).cedula }) |
+                @Html.ActionLink("Details", "Details", new { id = Model.listaPersonas.ElementAt(i).cedula }) |
+                @Html.ActionLink("Delete", "Delete", new { id = Model.listaPersonas.ElementAt(i).cedula })
+            </td>
+        </tr>
+    }
+
+</table>

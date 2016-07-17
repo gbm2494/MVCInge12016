@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModeloEntitiesStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="persona">
+      <EntityTypeMapping TypeName="ModeloEntities.persona">
+        <MappingFragment StoreEntitySet="persona">
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+          <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="carne" ColumnName="carne" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="telefono">
+      <EntityTypeMapping TypeName="ModeloEntities.telefono">
+        <MappingFragment StoreEntitySet="telefono">
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="telefono1" ColumnName="telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
