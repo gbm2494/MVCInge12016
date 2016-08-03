@@ -11,10 +11,13 @@ namespace EjemploMVC.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class telefono
     {
         public string cedula { get; set; }
+        [Display(Name = "Telefono:")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "El teléfono solo puede estar compuesto por números")]
         public string telefono1 { get; set; }
     
         public virtual persona persona { get; set; }

@@ -253,6 +253,7 @@
     <Content Include="Views\RecursosHumanos\Edit.cshtml" />
     <Content Include="Views\RecursosHumanos\Index.cshtml" />
     <Content Include="Views\RHVersion2\Index.cshtml" />
+    <Content Include="Views\RHVersion2\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
