@@ -1,31 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ModeloEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="persona" EntityType="ModeloEntities.persona" />
+    <EntitySet Name="telefono" EntityType="ModeloEntities.telefono" />
+    <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="ModeloEntities.FK__telefono__cedula__34C8D9D1">
+      <End Role="persona" EntitySet="persona" />
+      <End Role="telefono" EntitySet="telefono" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="persona">
     <Key>
       <PropertyRef Name="cedula" />
     </Key>
-    <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="apellido1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="carne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="carne" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
     <Property Name="sexo" Type="Boolean" Nullable="false" />
     <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="telefono" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="persona" ToRole="telefono" />
+    <NavigationProperty Name="telefono" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="persona" ToRole="telefono" />
   </EntityType>
   <EntityType Name="telefono">
     <Key>
       <PropertyRef Name="cedula" />
       <PropertyRef Name="telefono1" />
     </Key>
-    <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="telefono1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="persona" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="telefono" ToRole="persona" />
+    <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="telefono1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="persona" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="telefono" ToRole="persona" />
   </EntityType>
-  <Association Name="FK__telefono__cedula__35BCFE0A">
-    <End Role="persona" Type="Self.persona" Multiplicity="1" />
-    <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
+  <Association Name="FK__telefono__cedula__34C8D9D1">
+    <End Type="ModeloEntities.persona" Role="persona" Multiplicity="1" />
+    <End Type="ModeloEntities.telefono" Role="telefono" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="persona">
         <PropertyRef Name="cedula" />
@@ -35,12 +43,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="persona" EntityType="Self.persona" />
-    <EntitySet Name="telefono" EntityType="Self.telefono" />
-    <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
-      <End Role="persona" EntitySet="persona" />
-      <End Role="telefono" EntitySet="telefono" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

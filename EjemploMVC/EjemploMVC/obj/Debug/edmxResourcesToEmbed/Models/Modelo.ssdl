@@ -21,7 +21,7 @@
     <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
     <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
   </EntityType>
-  <Association Name="FK__telefono__cedula__35BCFE0A">
+  <Association Name="FK__telefono__cedula__34C8D9D1">
     <End Role="persona" Type="Self.persona" Multiplicity="1" />
     <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
     <ReferentialConstraint>
@@ -36,7 +36,7 @@
   <EntityContainer Name="ModeloEntitiesStoreContainer">
     <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="telefono" EntityType="Self.telefono" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
+    <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="Self.FK__telefono__cedula__34C8D9D1">
       <End Role="persona" EntitySet="persona" />
       <End Role="telefono" EntitySet="telefono" />
     </AssociationSet>

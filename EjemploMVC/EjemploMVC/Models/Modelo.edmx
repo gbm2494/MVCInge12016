@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ModeloEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ModeloEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="persona">
           <Key>
             <PropertyRef Name="cedula" />
@@ -26,7 +26,7 @@
           <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <Association Name="FK__telefono__cedula__35BCFE0A">
+        <Association Name="FK__telefono__cedula__34C8D9D1">
           <End Role="persona" Type="Self.persona" Multiplicity="1" />
           <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
           <ReferentialConstraint>
@@ -41,42 +41,49 @@
         <EntityContainer Name="ModeloEntitiesStoreContainer">
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="telefono" EntityType="Self.telefono" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
+          <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="Self.FK__telefono__cedula__34C8D9D1">
             <End Role="persona" EntitySet="persona" />
             <End Role="telefono" EntitySet="telefono" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ModeloEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="persona" EntityType="ModeloEntities.persona" />
+          <EntitySet Name="telefono" EntityType="ModeloEntities.telefono" />
+          <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="ModeloEntities.FK__telefono__cedula__34C8D9D1">
+            <End Role="persona" EntitySet="persona" />
+            <End Role="telefono" EntitySet="telefono" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="persona">
           <Key>
             <PropertyRef Name="cedula" />
           </Key>
-          <Property Name="nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="apellido1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="apellido1" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="apellido2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="carne" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="carne" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="sexo" Type="Boolean" Nullable="false" />
           <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="telefono" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="persona" ToRole="telefono" />
+          <NavigationProperty Name="telefono" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="persona" ToRole="telefono" />
         </EntityType>
         <EntityType Name="telefono">
           <Key>
             <PropertyRef Name="cedula" />
             <PropertyRef Name="telefono1" />
           </Key>
-          <Property Name="cedula" Type="String" MaxLength="11" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="telefono1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="persona" Relationship="Self.FK__telefono__cedula__35BCFE0A" FromRole="telefono" ToRole="persona" />
+          <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="telefono1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="persona" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="telefono" ToRole="persona" />
         </EntityType>
-        <Association Name="FK__telefono__cedula__35BCFE0A">
-          <End Role="persona" Type="Self.persona" Multiplicity="1" />
-          <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
+        <Association Name="FK__telefono__cedula__34C8D9D1">
+          <End Type="ModeloEntities.persona" Role="persona" Multiplicity="1" />
+          <End Type="ModeloEntities.telefono" Role="telefono" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="persona">
               <PropertyRef Name="cedula" />
@@ -86,14 +93,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="persona" EntityType="Self.persona" />
-          <EntitySet Name="telefono" EntityType="Self.telefono" />
-          <AssociationSet Name="FK__telefono__cedula__35BCFE0A" Association="Self.FK__telefono__cedula__35BCFE0A">
-            <End Role="persona" EntitySet="persona" />
-            <End Role="telefono" EntitySet="telefono" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -103,22 +102,22 @@
           <EntitySetMapping Name="persona">
             <EntityTypeMapping TypeName="ModeloEntities.persona">
               <MappingFragment StoreEntitySet="persona">
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
-                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
-                <ScalarProperty Name="carne" ColumnName="carne" />
-                <ScalarProperty Name="sexo" ColumnName="sexo" />
-                <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
                 <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
+                <ScalarProperty Name="sexo" ColumnName="sexo" />
+                <ScalarProperty Name="carne" ColumnName="carne" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
+                <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+                <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="telefono">
             <EntityTypeMapping TypeName="ModeloEntities.telefono">
               <MappingFragment StoreEntitySet="telefono">
-                <ScalarProperty Name="cedula" ColumnName="cedula" />
                 <ScalarProperty Name="telefono1" ColumnName="telefono" />
+                <ScalarProperty Name="cedula" ColumnName="cedula" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

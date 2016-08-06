@@ -4,22 +4,22 @@
     <EntitySetMapping Name="persona">
       <EntityTypeMapping TypeName="ModeloEntities.persona">
         <MappingFragment StoreEntitySet="persona">
-          <ScalarProperty Name="nombre" ColumnName="nombre" />
-          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
-          <ScalarProperty Name="apellido2" ColumnName="apellido2" />
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
-          <ScalarProperty Name="carne" ColumnName="carne" />
-          <ScalarProperty Name="sexo" ColumnName="sexo" />
-          <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
           <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
+          <ScalarProperty Name="sexo" ColumnName="sexo" />
+          <ScalarProperty Name="carne" ColumnName="carne" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
+          <ScalarProperty Name="apellido2" ColumnName="apellido2" />
+          <ScalarProperty Name="apellido1" ColumnName="apellido1" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="telefono">
       <EntityTypeMapping TypeName="ModeloEntities.telefono">
         <MappingFragment StoreEntitySet="telefono">
-          <ScalarProperty Name="cedula" ColumnName="cedula" />
           <ScalarProperty Name="telefono1" ColumnName="telefono" />
+          <ScalarProperty Name="cedula" ColumnName="cedula" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

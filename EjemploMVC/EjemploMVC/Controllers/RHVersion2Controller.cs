@@ -44,7 +44,7 @@ namespace EjemploMVC.Controllers
                     modelo.modeloTelefono2.cedula = modelo.modeloPersona.cedula;
                     baseDatos.telefono.Add(modelo.modeloTelefono2);
                 }
-                
+
                 baseDatos.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -54,5 +54,6 @@ namespace EjemploMVC.Controllers
                 return View(modelo);
             }
         }
+
     }
 }
