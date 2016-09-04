@@ -1,9 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="ModeloEntitiesStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="permisos">
+      <EntityTypeMapping TypeName="ModeloEntities.permisos">
+        <MappingFragment StoreEntitySet="permisos">
+          <ScalarProperty Name="permiso" ColumnName="permiso" />
+          <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="permisos_asociados_roles">
+      <EntityTypeMapping TypeName="ModeloEntities.permisos_asociados_roles">
+        <MappingFragment StoreEntitySet="permisos_asociados_roles">
+          <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+          <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="persona">
       <EntityTypeMapping TypeName="ModeloEntities.persona">
         <MappingFragment StoreEntitySet="persona">
+          <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="email" ColumnName="email" />
           <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
           <ScalarProperty Name="sexo" ColumnName="sexo" />

@@ -13,5 +13,6 @@ namespace EjemploMVC.Models
         public telefono modeloTelefono2 { get; set; }
         public List<persona> listaPersonas = new List<persona>();
         public List<telefono> listaNumeros = new List<telefono>();
+       
     }
 }

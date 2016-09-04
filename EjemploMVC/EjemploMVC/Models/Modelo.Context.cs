@@ -25,6 +25,8 @@ namespace EjemploMVC.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<permisos> permisos { get; set; }
+        public virtual DbSet<permisos_asociados_roles> permisos_asociados_roles { get; set; }
         public virtual DbSet<persona> persona { get; set; }
         public virtual DbSet<telefono> telefono { get; set; }
     }

@@ -224,6 +224,12 @@
       <DependentUpon>Modelo.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\ModeloIntermedio.cs" />
+    <Compile Include="Models\permisos.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\permisos_asociados_roles.cs">
+      <DependentUpon>Modelo.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\persona.cs">
       <DependentUpon>Modelo.tt</DependentUpon>
     </Compile>

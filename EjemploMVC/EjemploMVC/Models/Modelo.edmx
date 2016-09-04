@@ -5,6 +5,21 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="ModeloEntities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="permiso" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="permisos_asociados_roles">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_permiso" Type="int" Nullable="false" />
+          <Property Name="id_rol" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="persona">
           <Key>
             <PropertyRef Name="cedula" />
@@ -17,6 +32,7 @@
           <Property Name="sexo" Type="bit" Nullable="false" />
           <Property Name="fechaNac" Type="date" Nullable="false" />
           <Property Name="email" Type="varchar" MaxLength="40" />
+          <Property Name="id" Type="nvarchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="telefono">
           <Key>
@@ -26,7 +42,19 @@
           <Property Name="cedula" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="telefono" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <Association Name="FK__telefono__cedula__34C8D9D1">
+        <Association Name="FK__permisos___id_pe__4F7CD00D">
+          <End Role="permisos" Type="Self.permisos" Multiplicity="1" />
+          <End Role="permisos_asociados_roles" Type="Self.permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__telefono__cedula__5629CD9C">
           <End Role="persona" Type="Self.persona" Multiplicity="1" />
           <End Role="telefono" Type="Self.telefono" Multiplicity="*" />
           <ReferentialConstraint>
@@ -39,9 +67,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="ModeloEntitiesStoreContainer">
+          <EntitySet Name="permisos" EntityType="Self.permisos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="permisos_asociados_roles" EntityType="Self.permisos_asociados_roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="persona" EntityType="Self.persona" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="telefono" EntityType="Self.telefono" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="Self.FK__telefono__cedula__34C8D9D1">
+          <AssociationSet Name="FK__permisos___id_pe__4F7CD00D" Association="Self.FK__permisos___id_pe__4F7CD00D">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__telefono__cedula__5629CD9C" Association="Self.FK__telefono__cedula__5629CD9C">
             <End Role="persona" EntitySet="persona" />
             <End Role="telefono" EntitySet="telefono" />
           </AssociationSet>
@@ -51,13 +85,36 @@
     <edmx:ConceptualModels>
       <Schema Namespace="ModeloEntities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="permisos" EntityType="ModeloEntities.permisos" />
+          <EntitySet Name="permisos_asociados_roles" EntityType="ModeloEntities.permisos_asociados_roles" />
           <EntitySet Name="persona" EntityType="ModeloEntities.persona" />
           <EntitySet Name="telefono" EntityType="ModeloEntities.telefono" />
-          <AssociationSet Name="FK__telefono__cedula__34C8D9D1" Association="ModeloEntities.FK__telefono__cedula__34C8D9D1">
+          <AssociationSet Name="FK__permisos___id_pe__4F7CD00D" Association="ModeloEntities.FK__permisos___id_pe__4F7CD00D">
+            <End Role="permisos" EntitySet="permisos" />
+            <End Role="permisos_asociados_roles" EntitySet="permisos_asociados_roles" />
+          </AssociationSet>
+          <AssociationSet Name="FK__telefono__cedula__5629CD9C" Association="ModeloEntities.FK__telefono__cedula__5629CD9C">
             <End Role="persona" EntitySet="persona" />
             <End Role="telefono" EntitySet="telefono" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="permisos">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+          </Key>
+          <Property Name="id_permiso" Type="Int32" Nullable="false" />
+          <Property Name="permiso" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="permisos_asociados_roles" Relationship="ModeloEntities.FK__permisos___id_pe__4F7CD00D" FromRole="permisos" ToRole="permisos_asociados_roles" />
+        </EntityType>
+        <EntityType Name="permisos_asociados_roles">
+          <Key>
+            <PropertyRef Name="id_permiso" />
+            <PropertyRef Name="id_rol" />
+          </Key>
+          <Property Name="id_permiso" Type="Int32" Nullable="false" />
+          <Property Name="id_rol" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="permisos" Relationship="ModeloEntities.FK__permisos___id_pe__4F7CD00D" FromRole="permisos_asociados_roles" ToRole="permisos" />
+        </EntityType>
         <EntityType Name="persona">
           <Key>
             <PropertyRef Name="cedula" />
@@ -70,7 +127,8 @@
           <Property Name="sexo" Type="Boolean" Nullable="false" />
           <Property Name="fechaNac" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="email" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="telefono" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="persona" ToRole="telefono" />
+          <Property Name="id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="telefono" Relationship="ModeloEntities.FK__telefono__cedula__5629CD9C" FromRole="persona" ToRole="telefono" />
         </EntityType>
         <EntityType Name="telefono">
           <Key>
@@ -79,9 +137,21 @@
           </Key>
           <Property Name="cedula" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="telefono1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="persona" Relationship="ModeloEntities.FK__telefono__cedula__34C8D9D1" FromRole="telefono" ToRole="persona" />
+          <NavigationProperty Name="persona" Relationship="ModeloEntities.FK__telefono__cedula__5629CD9C" FromRole="telefono" ToRole="persona" />
         </EntityType>
-        <Association Name="FK__telefono__cedula__34C8D9D1">
+        <Association Name="FK__permisos___id_pe__4F7CD00D">
+          <End Type="ModeloEntities.permisos" Role="permisos" Multiplicity="1" />
+          <End Type="ModeloEntities.permisos_asociados_roles" Role="permisos_asociados_roles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="permisos">
+              <PropertyRef Name="id_permiso" />
+            </Principal>
+            <Dependent Role="permisos_asociados_roles">
+              <PropertyRef Name="id_permiso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__telefono__cedula__5629CD9C">
           <End Type="ModeloEntities.persona" Role="persona" Multiplicity="1" />
           <End Type="ModeloEntities.telefono" Role="telefono" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,9 +169,26 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModeloEntitiesStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="permisos">
+            <EntityTypeMapping TypeName="ModeloEntities.permisos">
+              <MappingFragment StoreEntitySet="permisos">
+                <ScalarProperty Name="permiso" ColumnName="permiso" />
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="permisos_asociados_roles">
+            <EntityTypeMapping TypeName="ModeloEntities.permisos_asociados_roles">
+              <MappingFragment StoreEntitySet="permisos_asociados_roles">
+                <ScalarProperty Name="id_rol" ColumnName="id_rol" />
+                <ScalarProperty Name="id_permiso" ColumnName="id_permiso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="persona">
             <EntityTypeMapping TypeName="ModeloEntities.persona">
               <MappingFragment StoreEntitySet="persona">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="email" ColumnName="email" />
                 <ScalarProperty Name="fechaNac" ColumnName="fechaNac" />
                 <ScalarProperty Name="sexo" ColumnName="sexo" />
